@@ -9,6 +9,6 @@ public class Categoria
     public string? Descricao { get; set; }
 
     [JsonIgnore]
-    public ICollection<Produto> Produtos { get; set; }
+    public ICollection<Produto>? Produtos { get; set; }
 }
 
