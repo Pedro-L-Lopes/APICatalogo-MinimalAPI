@@ -1,4 +1,5 @@
 using APICatalogo_MinimalAPI.ApiEndpoints;
+using APICatalogo_MinimalAPI.AppServicesExtensions;
 using APICatalogo_MinimalAPI.Context;
 using APICatalogo_MinimalAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -47,12 +48,11 @@ app.MapAutenticacaoEndpoint();
 app.MapCategoriasEndpoints();
 app.MapProdutosEndpoints();
 
-// Configure
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+var enviroment = app.Environment;
+
+app.UseExceptionHandling(enviroment)
+    .UseSwaggerMiddleware()
+    .UseAppCors();
 
 app.UseHttpsRedirection();
 
